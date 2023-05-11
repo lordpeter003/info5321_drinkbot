@@ -36,13 +36,14 @@ void setup() {
   lcd.autoscroll();   // enable each line to auto scroll from left -> right
   lcd.begin(sdaPin, sclPin);    // init the lcd with SDA and SCL pins
   lcd.backlight();    // turn on backlight
+  // welcome screen
   lcd.setCursor(0,0);   // col: 0, row: 0
   // lcd.print("Welcome to");
   // lcd.setCursor(0,1);   // col: 0, row: 1
   // lcd.print("Drinking Bot!");
   // delay(5000);
   // lcd.clear();
-  Serial.begin(9600);   // open serial port
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -107,12 +108,6 @@ void loop() {
 
 	// debounce reading
 	delay(5);
-  
-  // clear LCD
-  // lcd.clear();
-  // display temp
-  // lcd.print("xxx");
-  // delay(1000);
 }
 
 // once btn pushed, transition to next scene
@@ -120,6 +115,7 @@ void pushButton() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Your drink is");
+  lcd.setCursor(0, 1);
   lcd.print("on the way...");
 }
 
@@ -130,25 +126,18 @@ void drawMenu() {
     displayMenuItem(menuItem2, 1, false);
   } else if (menuItem == 2 && frame == 1) {
     displayMenuItem(menuItem1, 0, false);
-    // displayMenuItem("", 1, false);
     displayMenuItem(menuItem2, 1, true);
   } else if (menuItem == 2 && frame == 2) {
-    // displayMenuItem("", 0, false);
     displayMenuItem(menuItem2, 0, true);
-    // displayMenuItem("", 1, false);
     displayMenuItem(menuItem3, 1, false);
   } else if (menuItem == 3 && frame == 2) {
     displayMenuItem(menuItem2, 0, false);
-    // displayMenuItem("", 1, false);
     displayMenuItem(menuItem3, 1, true);
   } else if (menuItem == 3 && frame == 3) {
-    // displayMenuItem("", 0, false);
     displayMenuItem(menuItem3, 0, true);
-    // displayMenuItem("", 1, false);
     displayMenuItem(menuItem4, 1, false);
   } else if (menuItem == 4 && frame == 3) {
     displayMenuItem(menuItem3, 0, false);
-    // displayMenuItem("", 1, false);
     displayMenuItem(menuItem4, 1, true);
   }
 }
